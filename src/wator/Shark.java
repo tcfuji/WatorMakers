@@ -107,6 +107,8 @@ public class Shark extends Denizen {
       }
   }
     
+    
+    
     @Override
     public String toString() {
         return "Shark at (" + myRow + ", " + myColumn + ")";
