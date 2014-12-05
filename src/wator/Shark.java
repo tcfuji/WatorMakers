@@ -44,37 +44,39 @@ public class Shark extends Denizen {
      */
     @Override
     public void moveAndMaybeGiveBirth(Ocean ocean, Direction direction) {
-        if (timeToGestation <= 0) {
-            giveBirth(ocean, myRow, myColumn);
-            timeToGestation = Parameters.sharkGestationPeriod;
-        } else {
-            ocean.set(myRow, myColumn, WATER);
-        }
-        ocean.set(myRow, myColumn, direction, this);
-        justMoved = true;
-        
-        if (myRow + direction.dx < 0) {
-        	myRow = 74;
-        }
-        else if (myRow + direction.dx > 74) {
-        	myRow = 0;
-        }
-        else {
-        	// myRow = (myRow + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dx;
-        	myRow = myRow + direction.dx;
-        }
-        
-        if (myColumn + direction.dy < 0) {
-        	myColumn = 74;
-        }
-        else if (myColumn + direction.dy > 74) {
-        	myColumn = 0;
-        }
-        else {
-        	// myColumn = (myColumn + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dy;
-        	myColumn = myColumn + direction.dy;
-        }
-        timeToGestation -= 1;
+    	if (canMove(ocean, direction)) {
+	        if (timeToGestation <= 0) {
+	            giveBirth(ocean, myRow, myColumn);
+	            timeToGestation = Parameters.sharkGestationPeriod;
+	        } else {
+	            ocean.set(myRow, myColumn, WATER);
+	        }
+	        ocean.set(myRow, myColumn, direction, this);
+	        justMoved = true;
+	        
+	        if (myRow + direction.dx < 0) {
+	        	myRow = 74;
+	        }
+	        else if (myRow + direction.dx > 74) {
+	        	myRow = 0;
+	        }
+	        else {
+	        	// myRow = (myRow + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dx;
+	        	myRow = myRow + direction.dx;
+	        }
+	        
+	        if (myColumn + direction.dy < 0) {
+	        	myColumn = 74;
+	        }
+	        else if (myColumn + direction.dy > 74) {
+	        	myColumn = 0;
+	        }
+	        else {
+	        	// myColumn = (myColumn + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dy;
+	        	myColumn = myColumn + direction.dy;
+	        }
+	        timeToGestation -= 1;
+    	}
     }
 
     /* (non-Javadoc)
