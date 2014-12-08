@@ -61,7 +61,6 @@ public class Shark extends Denizen {
 	        	myRow = 0;
 	        }
 	        else {
-	        	// myRow = (myRow + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dx;
 	        	myRow = myRow + direction.dx;
 	        }
 	        
@@ -72,7 +71,6 @@ public class Shark extends Denizen {
 	        	myColumn = 0;
 	        }
 	        else {
-	        	// myColumn = (myColumn + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dy;
 	        	myColumn = myColumn + direction.dy;
 	        }
 	        timeToGestation -= 1;
@@ -86,7 +84,6 @@ public class Shark extends Denizen {
     public void giveBirth(Ocean ocean, int row, int column) {
         Shark babyShark = new Shark(row, column);
         ocean.set(row, column, babyShark);
-//        return babyShark;
     }
     
     public void makeOneStep(Ocean ocean) {
@@ -101,7 +98,9 @@ public class Shark extends Denizen {
       Direction direction = chooseRandomDirection();     
       Denizen neighbor = ocean.get(myRow, myColumn, direction);
       
+      // if you reach a fish...
       if (canMove(ocean, direction) && neighbor != WATER && !(neighbor instanceof Shark)) {
+    	  // eat it and set starvation period back to original value
     	  moveAndMaybeGiveBirth(ocean, direction);
     	  timeToStarvation = Parameters.sharkStarvationPeriod;
       }

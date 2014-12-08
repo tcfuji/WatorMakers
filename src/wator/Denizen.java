@@ -73,25 +73,6 @@ public abstract Color getColor();
      * @param ocean The Ocean containing all the Denizens.
      */
     public abstract void makeOneStep(Ocean ocean);
-//    {
-//        Denizen[][] array = ocean.getArray();
-//        timeToStarvation -= 1;
-//        if (timeToStarvation <= 0) {
-//            array[myRow][myColumn] = WATER;
-//            System.out.println(this + " starved.");
-//            return;
-//        }
-//        Direction direction = chooseRandomDirection();
-//        if (timeToStarvation <= 0) {
-//        	die(ocean);
-//        }
-//        else if (canMove(ocean, direction)) {
-//            moveAndMaybeGiveBirth(ocean, direction);
-//        }
-//        else {
-//        	 moveAndMaybeGiveBirth(ocean, direction);
-//        }
-//    }
     
     /**
      * Determines whether this Denizen can move in the given direction.
@@ -114,13 +95,9 @@ public abstract Color getColor();
      * @param ocean The ocean.
      * @param row The row which contains the new baby Denizen.
      * @param column The column which contains the new baby Denizen.
-     * @return The new baby Denizen.
      */
     public abstract void giveBirth(Ocean ocean, int row, int column);
     
-    public void die(Ocean ocean) {
-    	ocean.set(myRow, myColumn, WATER);
-    }
     
     /* (non-Javadoc)
      * @see java.lang.Object#toString()

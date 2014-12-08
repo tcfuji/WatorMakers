@@ -58,7 +58,6 @@ public class Fish extends Denizen {
 	        	myRow = 0;
 	        }
 	        else {
-	        	// myRow = (myRow + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dx;
 	        	myRow = myRow + direction.dx;
 	        }
 	        
@@ -69,10 +68,8 @@ public class Fish extends Denizen {
 	        	myColumn = 0;
 	        }
 	        else {
-	        	// myColumn = (myColumn + Wator.getOceanSize()) % Wator.getOceanSize() + direction.dy;
 	        	myColumn = myColumn + direction.dy;
 	        }
-	        // justMoved = true;
 	        System.out.println(this + " just moved.");
 	        timeToGestation -= 1;
     	}
@@ -85,8 +82,6 @@ public class Fish extends Denizen {
     public void giveBirth(Ocean ocean, int row, int column) {
         Fish babyFish = new Fish(row, column);
         ocean.set(row, column, babyFish);
-
-//        return babyFish;
     }
     
     @Override
