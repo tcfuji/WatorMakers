@@ -183,10 +183,9 @@ public class Ocean extends Observable {
      * Sets the frame rate to be 1000/delay.
      * @param delay The number of milliseconds between frames.
      */
-//    public void setDelay(int d) {
-//        delay = d;
-//        timer.
-//    }
+    public void setDelay(int d) {
+        delay = d;       
+    }
      
     /**
      * Tells the model to advance one "step."

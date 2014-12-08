@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 /**
  * "Wator" (a misspelling of "water") is a simple predator-prey simulation.
@@ -54,7 +54,6 @@ public class Wator extends JFrame {
     private final static int OCEAN_SIZE = 75;
     private Ocean ocean;
     private boolean running = false;
-    private Timer timer;
     
     /**
      * Set up the GUI.
@@ -104,6 +103,7 @@ public class Wator extends JFrame {
         speedControl.setMinorTickSpacing(5);
         speedControl.setPaintTicks(true);
         speedControl.setPaintLabels(true);
+        speedControl.setValueIsAdjusting(true);
         
         ocean = new Ocean(OCEAN_SIZE, OCEAN_SIZE);
         display.setOcean(ocean);
@@ -141,12 +141,7 @@ public class Wator extends JFrame {
                 running = !running;
                 runButton.setText(running ? "Stop" : "Run");
                 ocean.setRunning(running);
-                timer = new Timer(speedControl.getValue(), this);
-//                if (running) {
-//                	timer.stop();
-//                } else {
-//                	timer.start();
-//                }
+                
             }      
         });
         speedControl.addChangeListener(new ChangeListener() {
@@ -154,8 +149,9 @@ public class Wator extends JFrame {
             public void stateChanged(ChangeEvent e) {
                 int sliderValue = speedControl.getValue();
                 int delay = 10000 - (100 * sliderValue);
+                // speedControl.setValue(delay);
+                ocean.setDelay(delay);
                 
-                timer.setDelay(delay);
             }
             
         });
