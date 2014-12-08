@@ -16,6 +16,7 @@ public class Shark extends Denizen {
         super(row, column);
         timeToGestation = Parameters.sharkGestationPeriod;
         timeToStarvation = Parameters.sharkStarvationPeriod;
+        justMoved = false;
     }
     
     /* (non-Javadoc)
@@ -46,14 +47,14 @@ public class Shark extends Denizen {
     public void moveAndMaybeGiveBirth(Ocean ocean, Direction direction) {
     	if (canMove(ocean, direction)) {
 	        if (timeToGestation <= 0) {
+	        	System.out.println("Gestate");
 	            giveBirth(ocean, myRow, myColumn);
 	            timeToGestation = Parameters.sharkGestationPeriod;
 	        } else {
 	            ocean.set(myRow, myColumn, WATER);
 	        }
 	        ocean.set(myRow, myColumn, direction, this);
-	        justMoved = true;
-	        
+	        	      	        
 	        if (myRow + direction.dx < 0) {
 	        	myRow = 74;
 	        }
@@ -73,7 +74,7 @@ public class Shark extends Denizen {
 	        else {
 	        	myColumn = myColumn + direction.dy;
 	        }
-	        timeToGestation -= 1;
+	        justMoved = true;
     	}
     }
 
@@ -87,11 +88,14 @@ public class Shark extends Denizen {
     }
     
     public void makeOneStep(Ocean ocean) {
+      justMoved = false;
       Denizen[][] array = ocean.getArray();
       timeToStarvation -= 1;
+      timeToGestation -= 1;
+      System.out.println(timeToStarvation);
       if (timeToStarvation <= 0) {
           array[myRow][myColumn] = WATER;
-          System.out.println(this + " starved.");
+          
           return;
       }
       
@@ -99,13 +103,17 @@ public class Shark extends Denizen {
       Denizen neighbor = ocean.get(myRow, myColumn, direction);
       
       // if you reach a fish...
-      if (canMove(ocean, direction) && neighbor != WATER && !(neighbor instanceof Shark)) {
+      if (neighbor != WATER && !(neighbor instanceof Shark)) {
     	  // eat it and set starvation period back to original value
+    	  System.out.println("Ate fish!");
     	  moveAndMaybeGiveBirth(ocean, direction);
     	  timeToStarvation = Parameters.sharkStarvationPeriod;
+    	  System.out.println(timeToStarvation);
+    	  justMoved = true;
       }
       else if (canMove(ocean, direction)) {
     	  moveAndMaybeGiveBirth(ocean, direction);
+    	  justMoved = true;
       }
 
   }

@@ -70,7 +70,6 @@ public class Fish extends Denizen {
 	        else {
 	        	myColumn = myColumn + direction.dy;
 	        }
-	        System.out.println(this + " just moved.");
 	        timeToGestation -= 1;
     	}
     }

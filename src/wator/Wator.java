@@ -41,10 +41,12 @@ public class Wator extends JFrame {
     private JButton runButton = new JButton("Run");
     private JButton populateButton = new JButton("Populate");
     private JTextField sharkCount = new JTextField("1");
-    private JTextField fishCount = new JTextField("50");
-    private JTextField sharkGestationPeriod = new JTextField("20");
+    private JTextField fishCount = new JTextField("5000");
+    
+    // Starvation period < Gestation period
+    private JTextField sharkGestationPeriod = new JTextField("200");
     private JTextField fishGestationPeriod = new JTextField("10");
-    private JTextField sharkStarvationPeriod = new JTextField("25");
+    private JTextField sharkStarvationPeriod = new JTextField("150");
     private TitledBorder sharkBorder = new TitledBorder("Sharks");
     private TitledBorder fishBorder = new TitledBorder("Fish");
     
@@ -146,9 +148,7 @@ public class Wator extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 int sliderValue = speedControl.getValue();
-                System.out.println(sliderValue);
                 int delay = 100 - (sliderValue);
-                System.out.println(delay);
                 ocean.setDelay(delay);
                 ocean.setRunning(running);
             }
