@@ -28,10 +28,10 @@ public class Fish extends Denizen {
      */
     @Override
     public boolean canMove(Ocean ocean, Direction direction) {
-//        if (justMoved) {
-//            justMoved = false;
-//            return false;
-//        }
+        if (justMoved) {
+            justMoved = false;
+            return false;
+        }
         Denizen neighbor = ocean.get(myRow, myColumn, direction);
         return neighbor == WATER;
     }
@@ -49,6 +49,7 @@ public class Fish extends Denizen {
 	            ocean.set(myRow, myColumn, WATER);          
 	        }
 	        ocean.set(myRow, myColumn, direction, this);
+	        justMoved = true;
 	        
 	        if (myRow + direction.dx < 0) {
 	        	myRow = 74;
@@ -90,24 +91,14 @@ public class Fish extends Denizen {
     
     @Override
     public void makeOneStep(Ocean ocean) {
-//        Denizen[][] array = ocean.getArray();
-//        timeToStarvation -= 1;
-//        if (timeToStarvation <= 0) {
-//            array[myRow][myColumn] = WATER;
-//            System.out.println(this + " starved.");
-//            return;
-//        }
+
         Direction direction = chooseRandomDirection();
         moveAndMaybeGiveBirth(ocean, direction);
-//        if (timeToStarvation <= 0) {
-//        	die(ocean);
-//        }
-//        else if (canMove(ocean, direction)) {
-//            moveAndMaybeGiveBirth(ocean, direction);
-//        }
-//        else {
-//        	moveAndMaybeGiveBirth(ocean, direction);
-//        }
+
+        if (canMove(ocean, direction)) {
+            moveAndMaybeGiveBirth(ocean, direction);
+        }
+
     }
     
     /* (non-Javadoc)

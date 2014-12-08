@@ -97,16 +97,18 @@ public class Shark extends Denizen {
           System.out.println(this + " starved.");
           return;
       }
-      Direction direction = chooseRandomDirection();
-      if (timeToStarvation <= 0) {
-      	die(ocean);
+      
+      Direction direction = chooseRandomDirection();     
+      Denizen neighbor = ocean.get(myRow, myColumn, direction);
+      
+      if (canMove(ocean, direction) && neighbor != WATER && !(neighbor instanceof Shark)) {
+    	  moveAndMaybeGiveBirth(ocean, direction);
+    	  timeToStarvation = Parameters.sharkStarvationPeriod;
       }
       else if (canMove(ocean, direction)) {
-          moveAndMaybeGiveBirth(ocean, direction);
+    	  moveAndMaybeGiveBirth(ocean, direction);
       }
-      else {
-      	 moveAndMaybeGiveBirth(ocean, direction);
-      }
+
   }
     
     

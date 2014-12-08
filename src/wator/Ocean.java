@@ -5,6 +5,9 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+
+
 /**
  * @author David Matuszek
  */
@@ -180,9 +183,10 @@ public class Ocean extends Observable {
      * Sets the frame rate to be 1000/delay.
      * @param delay The number of milliseconds between frames.
      */
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
+//    public void setDelay(int d) {
+//        delay = d;
+//        timer.
+//    }
      
     /**
      * Tells the model to advance one "step."
