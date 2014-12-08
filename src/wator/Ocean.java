@@ -29,6 +29,7 @@ public class Ocean extends Observable {
         this.nRows = nRows;
         this.nColumns = nColumns;
         fillWithWater();
+        timer = new Timer(true);
     }
 
     /**
@@ -175,7 +176,8 @@ public class Ocean extends Observable {
             timer = new Timer(true);
             // timer.schedule(new Strobe(), 0, delay); //
             timer.schedule(new Strobe(), 0, 100 + delay*7);
-        } else {
+        } 
+        else {
             timer.cancel();
         }
     }

@@ -92,7 +92,10 @@ public class Shark extends Denizen {
       Denizen[][] array = ocean.getArray();
       timeToStarvation -= 1;
       timeToGestation -= 1;
+      System.out.println("Starvation time: ");
       System.out.println(timeToStarvation);
+      System.out.println("Gestation time: ");
+      System.out.println(timeToGestation);
       if (timeToStarvation <= 0) {
           array[myRow][myColumn] = WATER;
           
