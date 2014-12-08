@@ -40,7 +40,7 @@ public class Wator extends JFrame {
     private JSlider speedControl = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 100);
     private JButton runButton = new JButton("Run");
     private JButton populateButton = new JButton("Populate");
-    private JTextField sharkCount = new JTextField("10");
+    private JTextField sharkCount = new JTextField("1");
     private JTextField fishCount = new JTextField("50");
     private JTextField sharkGestationPeriod = new JTextField("20");
     private JTextField fishGestationPeriod = new JTextField("10");
