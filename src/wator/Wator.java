@@ -150,7 +150,7 @@ public class Wator extends JFrame {
                 int delay = 100 - (sliderValue);
                 System.out.println(delay);
                 ocean.setDelay(delay);
-                
+                ocean.setRunning(running);
             }
             
         });

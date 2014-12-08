@@ -187,7 +187,7 @@ public class Ocean extends Observable {
     public void setDelay(int d) {
     	timer.cancel();
         delay = d; 
-        setRunning(true);
+        // setRunning(true);
     }
      
     /**
