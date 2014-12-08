@@ -173,7 +173,8 @@ public class Ocean extends Observable {
     public void setRunning(boolean running) {
         if (running) {
             timer = new Timer(true);
-            timer.schedule(new Strobe(), delay, 250); //
+            // timer.schedule(new Strobe(), 0, delay); //
+            timer.schedule(new Strobe(), 0, 100 + delay*7);
         } else {
             timer.cancel();
         }
@@ -184,7 +185,9 @@ public class Ocean extends Observable {
      * @param delay The number of milliseconds between frames.
      */
     public void setDelay(int d) {
-        delay = d;       
+    	timer.cancel();
+        delay = d; 
+        setRunning(true);
     }
      
     /**

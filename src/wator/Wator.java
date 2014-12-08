@@ -18,7 +18,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
 /**
  * "Wator" (a misspelling of "water") is a simple predator-prey simulation.
  * In this simulation, there are sharks and fish. Sharks move, eat fish, and
@@ -38,15 +37,14 @@ public class Wator extends JFrame {
     private JPanel runPanel = new JPanel();
     private JPanel speedControlPanel = new JPanel();
     private JPanel buttonPanel = new JPanel();
-    private JSlider speedControl = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 80);
+    private JSlider speedControl = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 100);
     private JButton runButton = new JButton("Run");
     private JButton populateButton = new JButton("Populate");
-    private JTextField sharkCount = new JTextField("100");
-    private JTextField fishCount = new JTextField("500");
+    private JTextField sharkCount = new JTextField("10");
+    private JTextField fishCount = new JTextField("50");
     private JTextField sharkGestationPeriod = new JTextField("20");
     private JTextField fishGestationPeriod = new JTextField("10");
-    private JTextField sharkStarvationPeriod = new JTextField("20");
-    private JTextField fishStarvationPeriod = new JTextField("40");
+    private JTextField sharkStarvationPeriod = new JTextField("25");
     private TitledBorder sharkBorder = new TitledBorder("Sharks");
     private TitledBorder fishBorder = new TitledBorder("Fish");
     
@@ -148,8 +146,9 @@ public class Wator extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 int sliderValue = speedControl.getValue();
-                int delay = 10000 - (100 * sliderValue);
-                // speedControl.setValue(delay);
+                System.out.println(sliderValue);
+                int delay = 100 - (sliderValue);
+                System.out.println(delay);
                 ocean.setDelay(delay);
                 
             }
@@ -174,7 +173,6 @@ public class Wator extends JFrame {
             
             count = Integer.valueOf(fishCount.getText());
             gestation = Integer.valueOf(fishGestationPeriod.getText());
-            starvation = Integer.valueOf(fishStarvationPeriod.getText());
             Parameters.setFishStatistics(count, gestation, starvation);
             
             ocean.fillWithWater();
