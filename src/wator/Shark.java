@@ -47,7 +47,6 @@ public class Shark extends Denizen {
     public void moveAndMaybeGiveBirth(Ocean ocean, Direction direction) {
     	if (canMove(ocean, direction)) {
 	        if (timeToGestation <= 0) {
-	        	System.out.println("Gestate");
 	            giveBirth(ocean, myRow, myColumn);
 	            timeToGestation = Parameters.sharkGestationPeriod;
 	        } else {
@@ -92,10 +91,6 @@ public class Shark extends Denizen {
       Denizen[][] array = ocean.getArray();
       timeToStarvation -= 1;
       timeToGestation -= 1;
-      System.out.println("Starvation time: ");
-      System.out.println(timeToStarvation);
-      System.out.println("Gestation time: ");
-      System.out.println(timeToGestation);
       if (timeToStarvation <= 0) {
           array[myRow][myColumn] = WATER;
           
@@ -108,10 +103,8 @@ public class Shark extends Denizen {
       // if you reach a fish...
       if (neighbor != WATER && !(neighbor instanceof Shark)) {
     	  // eat it and set starvation period back to original value
-    	  System.out.println("Ate fish!");
     	  moveAndMaybeGiveBirth(ocean, direction);
     	  timeToStarvation = Parameters.sharkStarvationPeriod;
-    	  System.out.println(timeToStarvation);
     	  justMoved = true;
       }
       else if (canMove(ocean, direction)) {

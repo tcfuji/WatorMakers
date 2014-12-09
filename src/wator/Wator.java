@@ -126,12 +126,22 @@ public class Wator extends JFrame {
 
     /**
      * Attach listeners to buttons and the speed control.
+     * 
      */
     private void attachListeners() {
         populateButton.addActionListener(new ActionListener() {
+        	
             @Override
             public void actionPerformed(ActionEvent e) {
-                populate();
+            	// Check if the gestation period is greater than or equal to the starvation period
+            	if (Integer.parseInt(sharkStarvationPeriod.getText()) >= Integer.parseInt(sharkGestationPeriod.getText())) {
+            		// if so, post a message and stop functionality
+            		JOptionPane.showMessageDialog(thisFrame, "Shark gestation period should be greater than shark starvation period.");
+            	}
+            	else {
+            		// if the requirement is satisfied, populate normally.
+            		populate();
+            	}
                 display.repaint();
             }      
         });

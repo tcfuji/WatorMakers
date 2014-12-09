@@ -1,8 +1,10 @@
-1. Understand Enum
-2. Look at Direction.java
-3. Look at `giveBirth` methods (why set and return?)
-4. Look at moveAndMaybeGiveBirth methods (if/else commands switched?)
-5. Why to the Fish and Sharks stay in place after some time?
-6. Look at Denizen.makeOneStep method.
+Wator User File
+======
 
-NEEDED TO SET THE myRow and myColumn variables!!
+
+
+1. Set the initial value of sharks, fish, gestation period for each, and the starvation period for sharks.
+2. Gestation period MUST be greater than the starvation.
+3. Control the speed in the slider.
+4. Press the populate button.
+5. To start simulation, press run.
